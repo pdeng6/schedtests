@@ -11,7 +11,7 @@
 #####################
 netperf_work_mode="TCP_RR UDP_RR"
 netperf_host_ip=127.0.0.1
-netperf_sleep_time=30
+netperf_sleep_time=3
 netperf_pattern_cmd="grep $netperf_run_time\.00"
 netperf_log_path=$test_path/logs/netperf
 
@@ -68,7 +68,7 @@ run_netperf_iterations()
 		#echo "Thread:"$job" - Mode:"$wm" - Iterations:"$i >> netperf_process.log
 		#sudo scp netperf_process.log chenyu-dev:~/
 		#cat /proc/schedstat | grep cpu >> $netperf_log_path/$wm/thread-$job/$run_name-schedstat_after.log
-		sleep 10
+		sleep 1
 	done
 }
 
