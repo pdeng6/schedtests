@@ -326,7 +326,7 @@ if __name__ == "__main__":
     baseline = ""
     compare = ""
     schedstat_field = ""
-    logpath = "logs"
+    logpath = "logs_srf/logs_ref"
     print_sis_nr = 0
 
     for opt_name, opt_value in opts:

@@ -2,10 +2,10 @@
 rela_path=`dirname $0`
 test_path=`cd "$rela_path" && pwd`
 
-pepc.standalone pstates config --governor performance
-pepc.standalone pstates config --turbo off
-pepc.standalone cstates config --disable C6
-echo 1 > /proc/sys/kernel/numa_balancing
+sudo pepc.standalone pstates config --governor performance
+sudo pepc.standalone pstates config --turbo off
+sudo pepc.standalone cstates config --disable C6
+echo 1 | sudo tee /proc/sys/kernel/numa_balancing
 #echo 1 > /proc/sys/kernel/sched_schedstats
 #echo 1 > /sys/kernel/debug/tracing/events/sched/sched_update_sd_lb_stats/enable
 #pepc.standalone cpu-hotplug offline --packages 1

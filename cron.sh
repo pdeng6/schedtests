@@ -3,8 +3,8 @@ rela_path=`dirname $0`
 test_path=`cd "$rela_path" && pwd`
 run_name=`uname -r`
 task_list="hackbench netperf tbench schbench"
-email_address="yu.c.chen@intel.com"
-reboot_cmd="systemctl reboot"
+email_address="pan.deng@intel.com"
+reboot_cmd="sudo systemctl reboot"
 
 task_notify()
 {
@@ -32,6 +32,8 @@ task_notify()
 
 #wait for the system boots up completely
 sleep 30
+echo 0 | sudo tee /proc/sys/kernel/sched_autogroup_enabled
+echo 1 | sudo tee /proc/sys/kernel/sched_exp_last_idle_cpu
 
 cd $test_path
 touch state_machine
