@@ -34,9 +34,9 @@ run_hackbench_pre()
 	# ${A##* } - remove longest leading, keep only the last word)
 	last_job=${hackbench_job_list##* }
 	tasks=$((last_job * $hackbench_num_fds))
-	org_open_files=`ulimit -n`
+	org_open_files=`sudo ulimit -n`
 	# increase open file number
-	ulimit -n $((tasks + $(nproc) + $org_open_files))
+	sudo ulimit -n $((tasks + $(nproc) + $org_open_files))
 
 	for job in $hackbench_job_list; do
 		for wt in $hackbench_work_type; do
