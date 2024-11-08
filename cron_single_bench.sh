@@ -33,6 +33,7 @@ task_notify()
 
 #wait for the system boots up completely
 sudo systemctl stop tuned
+sudo pkill BESClient
 sleep 30
 echo 0 | sudo tee /proc/sys/kernel/sched_autogroup_enabled
 
