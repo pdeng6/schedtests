@@ -31,6 +31,7 @@ task_notify()
 }
 
 #wait for the system boots up completely
+sudo systemctl stop tuned
 sleep 30
 echo 0 | sudo tee /proc/sys/kernel/sched_autogroup_enabled
 echo 1 | sudo tee /proc/sys/kernel/sched_exp_last_idle_cpu
