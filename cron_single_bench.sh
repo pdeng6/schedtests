@@ -3,7 +3,7 @@ rela_path=`dirname $0`
 test_path=`cd "$rela_path" && pwd`
 run_name=`uname -r`
 task_list="hackbench netperf tbench schbench"
-task_list="hackbench"
+task_list="tbench schbench"
 email_address="pan.deng@intel.com"
 reboot_cmd="sudo systemctl reboot"
 
@@ -40,6 +40,16 @@ echo 0 | sudo tee /proc/sys/kernel/sched_autogroup_enabled
 cd $test_path
 touch state_machine
 
+if ! [ -d logs_ref ]
+then
+    mkdir -p logs_ref
+fi
+
+if ! [ -d logs_opt ]
+then
+    mkdir -p logs_opt
+fi
+
 for task in $task_list; do
 	if [ `grep -c $task state_machine` -eq '0' ]; then
 		#task_notify $task "started"
@@ -48,7 +58,7 @@ for task in $task_list; do
 		echo "$task" >> state_machine
 		# wait for the notification sent out
 		sleep 10
-		mv logs logs_ref
+		mv logs/* logs_ref/
 		$reboot_cmd
 		exit
 	elif [ `grep -c $task state_machine` -eq '1' ]; then
@@ -59,7 +69,7 @@ for task in $task_list; do
 		echo "$task" >> state_machine
 		# wait for the notification sent out
 		sleep 10
-		mv logs logs_opt
+		mv logs/* logs_opt/
 		$reboot_cmd
 		exit
 	fi
