@@ -13,6 +13,7 @@ tbench_host_ip=127.0.0.1
 tbench_work_mode="loopback"
 tbench_pattern_cmd="grep Throughput"
 tbench_sleep_time=30
+tbench_iter_interval=30
 tbench_log_path=$test_path/logs/tbench
 
 run_tbench_pre()
@@ -65,7 +66,9 @@ run_tbench_iterations()
 		#echo -e "\nThread:"$job" - Mode:"$wm" - Iterations:"$i >> tbench_process.log
 		#sudo scp tbench_process.log chenyu-dev:~/
 		#cat /proc/schedstat | grep cpu >> $tbench_log_path/$wm/thread-$job/$run_name-schedstat_after.log
-		sleep 10
+		if [ $i -ne $tbench_iterations ]; then
+			sleep $tbench_iter_interval
+		fi
 	done
 }
 
