@@ -1,7 +1,9 @@
 #!/bin/bash -x
 
-# 40 80 120 160 ... 320
-num_thread=160
+min_job=$(($(nproc) / 4))
+
+# min_job * 1..8
+num_thread=$(($min_job * 3))
 
 # TCP_RR UDP_RR
 netperf_work_mode="TCP_RR"
