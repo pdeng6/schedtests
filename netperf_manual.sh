@@ -1,13 +1,12 @@
 #!/bin/bash -x
 
-min_job=$(($(nproc) / 4))
+: ${min_job:=$(($(nproc) / 4))}
 
 # min_job * 1..8
-num_thread=$(($min_job * 3))
+: ${num_thread:=$(($min_job * 2))}
 
 # TCP_RR UDP_RR
-netperf_work_mode="TCP_RR"
-
+: ${netperf_work_mode:="UDP_RR"}
 
 netperf_host_ip=127.0.0.1
 netperf_run_time=10
